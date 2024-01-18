@@ -2,6 +2,11 @@ CLIENT_NAME = client
 
 SERVER_NAME = server
 
+LIBFT = libft.a
+
+LIBFT_SOURCES = libft/*.c
+LIBFT_OBJ = libft/*.o
+
 CFLAGS = -Wall -Werror -Wextra
 
 CC = cc
@@ -15,10 +20,11 @@ OBJ_FILES = $(SOURCES:%.c=%.o)
 #colours
 GREEN = \033[0;92m
 
-all: $(SERVER_NAME)
+all: $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT)
 
-#$(CLIENT_NAME): client.c
-#	$(CC) $(CFLAGS) -o client client.c
+$(CLIENT_NAME): client.c
+	@$(CC) $(CFLAGS) -o client client.c
+	@echo "$(GREEN)The client has been created!"
 
 $(SERVER_NAME): server.c
 	@$(CC) $(CFLAGS) -o server server.c
@@ -26,7 +32,10 @@ $(SERVER_NAME): server.c
 
 
 clean:
-	@$(RM) $(SERVER_NAME)
+	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT) $(LIBFT_OBJ)
 	@echo "$(GREEN)The server and client have been removed!"
+
+$(LIBFT): $(LIBFT_SOURCES)
+	@cd libft && $(MAKE)
 
 .PHONY:			all clean fclean re bonus

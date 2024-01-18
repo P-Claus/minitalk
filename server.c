@@ -8,7 +8,7 @@ int	main(void)
 
 	count = 1;
 	printf("The pid is: %d\n", getpid());
-	while (count > 0)
+	while (1)
 	{
 		printf("Count: %d\n", count);
 		sleep(1);
