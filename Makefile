@@ -22,16 +22,16 @@ GREEN = \033[0;92m
 
 all: library $(SERVER_NAME) $(CLIENT_NAME) 
 
-library:
+library: $(LIBFT_SOURCES)
 	@make -C $(LIBFT) -s
 	@echo "$(GREEN)Libft has been created!"
 
 $(CLIENT_NAME): client.c
-	@$(CC) $(CFLAGS) -o client client.c
+	@$(CC) $(CFLAGS) -L $(LIBFT) -o client client.c -lft 
 	@echo "$(GREEN)The client has been created!"
 
 $(SERVER_NAME): server.c
-	@$(CC) $(CFLAGS) -o server server.c
+	@$(CC) $(CFLAGS) -L $(LIBFT) -o server server.c -lft 
 	@echo "$(GREEN)The server has been created!"
 
 clean:
