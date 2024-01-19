@@ -13,17 +13,17 @@ CC = cc
 
 RM = rm -f
 
-SOURCES = server.c 
+SOURCES = server.c client.c 
 
 OBJ_FILES = $(SOURCES:%.c=%.o)
 
 #colours
 GREEN = \033[0;92m
 
-all: $(SERVER_NAME) $(CLIENT_NAME) lib
+all: library $(SERVER_NAME) $(CLIENT_NAME) 
 
-lib:
-	@make -C $(LIBFT)
+library:
+	@make -C $(LIBFT) -s
 	@echo "$(GREEN)Libft has been created!"
 
 $(CLIENT_NAME): client.c
@@ -34,15 +34,18 @@ $(SERVER_NAME): server.c
 	@$(CC) $(CFLAGS) -o server server.c
 	@echo "$(GREEN)The server has been created!"
 
-
 clean:
-	@make clean -C $(LIBFT)
+	@make clean -C $(LIBFT) -s
 	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ)
-	@echo "$(GREEN)The server and client have been removed!"
+	@echo "$(GREEN)The server, client and object files from libft have been removed!"
 
 fclean:
-	@make fclean -C $(LIBFT)
+	@make fclean -C $(LIBFT) -s
 	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ)
 	@echo "$(GREEN)The server, client, libft and the object files have been removed!"
 
-.PHONY:			all clean fclean re bonus
+re:
+	make fclean
+	make
+
+.PHONY:			all clean fclean re library
