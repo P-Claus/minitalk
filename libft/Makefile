@@ -25,7 +25,7 @@ OBJ_FILES = $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(SOURCES)
-	@cc $(CFLAGS) -c $(SOURCES)
+	@$(CC) $(CFLAGS) -c $(SOURCES)
 	@ar rcs $(NAME) $(OBJ_FILES)
 
 clean:
