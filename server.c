@@ -2,28 +2,29 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
-/*
+#include <signal.h>
+
 void	handle_signal(int sig)
 {
-	printf("You pressed control c\n");
+	//ft_putchar('1');
+	printf("it works%d\n", sig);
 }
-*/
+
 int	main(void)
 {
-	int	count;
 
-	count = 1;
-/*
 	struct sigaction sa;
 	sa.sa_handler = &handle_signal;
-	sigaction()
-*/
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+
+
 	printf("The pid is: %d\n", getpid());
-	while (1)
-	{
-		printf("Count: %d\n", count);
-		sleep(1);
-		count++;
-	}
+	pause();
+
+	//while (1)
+	//	printf("Count: %d\n", count);
+	//	sleep(1);
+	//	count++;
 	return (0);
 }
