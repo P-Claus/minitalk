@@ -6,7 +6,9 @@
 
 void	handle_signal(int sig)
 {
-	//ft_putchar('1');
+	static int		bit_received;
+	static char	character_received;
+
 	printf("it works%d\n", sig);
 }
 
@@ -18,13 +20,13 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 
-
 	printf("The pid is: %d\n", getpid());
-	pause();
 
-	//while (1)
-	//	printf("Count: %d\n", count);
-	//	sleep(1);
-	//	count++;
+	while (1)
+	{
+		
+		pause();
+	}
+
 	return (0);
 }
