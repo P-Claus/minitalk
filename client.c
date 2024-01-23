@@ -17,7 +17,7 @@ void	convert_char_to_bits(int pid, char c)
 			//ft_putchar('0'); //send kill SIGUSR2
 			kill(pid, SIGUSR2);
 		count--;
-		sleep(0.000042);
+		usleep(42);
 	}
 
 }
