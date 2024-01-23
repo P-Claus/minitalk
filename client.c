@@ -36,12 +36,8 @@ int	main(int argc, char *argv[])
 	pid = argv[1];
 	string = argv[2];
 	new_pid = ft_atoi(pid);
-	printf("The pid after atoi is: %d\n", new_pid);
 	while (string[index] != '\0')
 		convert_char_to_bits(new_pid, string[index++]);
-
-
-	//kill(new_pid, SIGINT);
 
 	return (0);
 }
