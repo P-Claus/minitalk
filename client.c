@@ -38,6 +38,8 @@ int	main(int argc, char *argv[])
 	new_pid = ft_atoi(pid);
 	while (string[index] != '\0')
 		convert_char_to_bits(new_pid, string[index++]);
+	if (string[index] == '\0')
+		convert_char_to_bits(new_pid, '\0');
 
 	return (0);
 }

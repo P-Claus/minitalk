@@ -4,24 +4,30 @@
 #include <sys/types.h>
 #include <signal.h>
 
-int	bit_received;
 
 void	handle_signal(int sig)
 {
+	static char	char_received;
+	static int		bit_index;
+
 	if (sig == SIGUSR1)
-		bit_received = 1;
-	else if (sig == SIGUSR2)
-		bit_received = 0;
+		char_received |= 1;
+	bit_index++;
+	if (bit_index == 8)
+	{
+		if (char_received == '\0')
+			ft_putchar('\n');
+		else
+			ft_putchar(char_received);
+		bit_index = 0;
+		char_received = 0;
+	}
+	else
+		char_received <<= 1;
 }
 
 int	main(void)
 {
-	int		counter;
-	char	char_received;
-
-	counter = 7;
-	char_received = 0;
-
 	struct sigaction sa;
 	sa.sa_handler = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
@@ -29,16 +35,7 @@ int	main(void)
 
 	printf("The pid is: %d\n", getpid());
 	while (1)
-	{
-		while (counter >= 0)
-		{
-			pause();
-			char_received = (char_received << counter) | bit_received;
-			counter--;
-		}
-		ft_putchar(char_received);
-		break;
-	}
+		pause();
 
 	return (0);
 }
