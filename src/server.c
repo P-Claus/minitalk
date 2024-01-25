@@ -10,12 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <signal.h>
-
+#include "../includes/minitalk.h"
+#include "../includes/server.h"
 
 void	handle_signal(int sig)
 {

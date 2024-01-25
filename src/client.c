@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <signal.h>
-
+#include "../includes/minitalk.h"
+#include "../includes/client.h"
 
 void	convert_char_to_bits(int pid, char c)
 {
