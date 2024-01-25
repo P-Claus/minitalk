@@ -1,46 +1,56 @@
-CLIENT_NAME = client
+#########################################
+###		 CONFIG	      	      ###
+#########################################
 
-SERVER_NAME = server
+CLIENT_NAME	= client
+SERVER_NAME	= server
+NAME		= $(CLIENT_NAME) $(SERVER_NAME)
 
-LIBFT = libft
 
-LIBFT_SOURCES = libft/*.c
-LIBFT_OBJ = libft/*.o
+LIBFT_DIR	= ./libft
+LIBFT		= ./libft/libft.a
+LIBFT_SOURCES	= libft/*.c
+LIBFT_OBJ	= libft/*.o
 
-CFLAGS = -Wall -Werror -Wextra
+CC		= cc
+RM		= rm -rf
+CFLAGS		= -Wall -Werror -Wextra -Iincludes
 
-CC = cc
+SOURCES_DIR = src/
+SERVER_SRC = $(SOURCES_DIR)server.c
+CLIENT_SRC = $(SOURCES_DIR)client.c
 
-RM = rm -f
-
-SOURCES = server.c client.c 
-
-OBJ_FILES = $(SOURCES:%.c=%.o)
-
-#colours
+#########################################
+###		 COLORS	      	      ###
+#########################################
 GREEN = \033[0;92m
 
-all: library $(SERVER_NAME) $(CLIENT_NAME) 
+#########################################
+###		 RULES	      	      ###
+#########################################
 
-library: $(LIBFT_SOURCES)
-	@make -C $(LIBFT) -s
+name: $(LIBFT) $(SERVER_NAME) $(CLIENT_NAME)
+all: $(NAME)
+
+$(LIBFT): 
+	@make -C $(LIBFT_DIR) -s
 	@echo "$(GREEN)Libft has been created!"
 
-$(CLIENT_NAME): client.c
-	@$(CC) $(CFLAGS) -L $(LIBFT) -o client client.c -lft 
-	@echo "$(GREEN)The client has been created!"
-
-$(SERVER_NAME): server.c
-	@$(CC) $(CFLAGS) -L $(LIBFT) -o server server.c -lft 
+$(SERVER_NAME): $(SERVER_SRC)
+	@$(CC) $(CFLAGS) -L $(LIBFT_DIR) -o $(SERVER_NAME) $(SERVER_SRC) -lft
 	@echo "$(GREEN)The server has been created!"
 
+$(CLIENT_NAME): $(CLIENT_SRC)
+	@$(CC) $(CFLAGS) -L $(LIBFT_DIR) -o $(CLIENT_NAME) $(CLIENT_SRC) -lft
+	@echo "$(GREEN)The client has been created!"
+
 clean:
-	@make clean -C $(LIBFT) -s
+	@make clean -C $(LIBFT_DIR) -s
 	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ)
 	@echo "$(GREEN)The server, client and object files from libft have been removed!"
 
 fclean:
-	@make fclean -C $(LIBFT) -s
+	@make fclean -C $(LIBFT_DIR) -s
 	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ)
 	@echo "$(GREEN)The server, client, libft and the object files have been removed!"
 
@@ -48,4 +58,4 @@ re:
 	make fclean
 	make
 
-.PHONY:			all clean fclean re library
+.PHONY:			all clean fclean re 
