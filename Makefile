@@ -21,6 +21,16 @@ SOURCES_DIR	= src/
 SERVER_SRC	= $(SOURCES_DIR)server.c
 CLIENT_SRC	= $(SOURCES_DIR)client.c
 
+#########################################
+###		 BONUS	      	      ###
+#########################################
+BONUS_CLIENT_NAME	= client
+BONUS_SERVER_NAME	= server
+BONUS_NAME		= $(BONUS_CLIENT_NAME) $(BONUS_SERVER_NAME)
+
+BONUS_INCLUDES		= -I ./bonus_includes
+BONUS_SERVER_SRC	= $(SOURCES_DIR)server_bonus.c
+BONUS_CLIENT_SRC	= $(SOURCES_DIR)client_bonus.c
 
 #########################################
 ###		 COLORS	      	      ###
@@ -31,19 +41,19 @@ GREEN		= \033[0;92m
 ###		 RULES	      	      ###
 #########################################
 
-name: $(LIBFT) $(SERVER_NAME) $(CLIENT_NAME)
+name: $(SERVER_NAME) $(CLIENT_NAME)
 all: $(NAME)
 
 $(LIBFT): 
 	@make -C $(LIBFT_DIR) -s
 	@echo "$(GREEN)Libft has been created!"
 
-$(SERVER_NAME): $(SERVER_SRC) ./includes/server.h ./includes/minitalk.h
-	@$(CC) $(CFLAGS) $(INCLUDES) -L $(LIBFT_DIR) -o $(SERVER_NAME) $(SERVER_SRC) -lft
+$(SERVER_NAME): $(LIBFT) $(SERVER_SRC) ./includes/server.h ./includes/minitalk.h
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) -o $(SERVER_NAME) $(SERVER_SRC)
 	@echo "$(GREEN)The server has been created!"
 
-$(CLIENT_NAME): $(CLIENT_SRC) ./includes/client.h ./includes/minitalk.h
-	@$(CC) $(CFLAGS) $(INCLUDES) -L $(LIBFT_DIR) -o $(CLIENT_NAME) $(CLIENT_SRC) -lft
+$(CLIENT_NAME): $(LIBFT) $(CLIENT_SRC) ./includes/client.h ./includes/minitalk.h
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) -o $(CLIENT_NAME) $(CLIENT_SRC)
 	@echo "$(GREEN)The client has been created!"
 
 clean:
@@ -60,4 +70,8 @@ re:
 	@make fclean
 	@make
 
-.PHONY:			all clean fclean re 
+bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
+
+
+
+.PHONY:			all clean fclean re bonus
