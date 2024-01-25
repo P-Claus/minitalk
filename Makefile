@@ -12,18 +12,20 @@ LIBFT		= ./libft/libft.a
 LIBFT_SOURCES	= libft/*.c
 LIBFT_OBJ	= libft/*.o
 
+INCLUDES	= -I ./includes
 CC		= cc
 RM		= rm -rf
-CFLAGS		= -Wall -Werror -Wextra -Iincludes
+CFLAGS		= -Wall -Werror -Wextra $(INCLUDES)
 
-SOURCES_DIR = src/
-SERVER_SRC = $(SOURCES_DIR)server.c
-CLIENT_SRC = $(SOURCES_DIR)client.c
+SOURCES_DIR	= src/
+SERVER_SRC	= $(SOURCES_DIR)server.c
+CLIENT_SRC	= $(SOURCES_DIR)client.c
+
 
 #########################################
 ###		 COLORS	      	      ###
 #########################################
-GREEN = \033[0;92m
+GREEN		= \033[0;92m
 
 #########################################
 ###		 RULES	      	      ###
@@ -36,12 +38,12 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR) -s
 	@echo "$(GREEN)Libft has been created!"
 
-$(SERVER_NAME): $(SERVER_SRC)
-	@$(CC) $(CFLAGS) -L $(LIBFT_DIR) -o $(SERVER_NAME) $(SERVER_SRC) -lft
+$(SERVER_NAME): $(SERVER_SRC) ./includes/server.h ./includes/minitalk.h
+	@$(CC) $(CFLAGS) $(INCLUDES) -L $(LIBFT_DIR) -o $(SERVER_NAME) $(SERVER_SRC) -lft
 	@echo "$(GREEN)The server has been created!"
 
-$(CLIENT_NAME): $(CLIENT_SRC)
-	@$(CC) $(CFLAGS) -L $(LIBFT_DIR) -o $(CLIENT_NAME) $(CLIENT_SRC) -lft
+$(CLIENT_NAME): $(CLIENT_SRC) ./includes/client.h ./includes/minitalk.h
+	@$(CC) $(CFLAGS) $(INCLUDES) -L $(LIBFT_DIR) -o $(CLIENT_NAME) $(CLIENT_SRC) -lft
 	@echo "$(GREEN)The client has been created!"
 
 clean:
@@ -55,7 +57,7 @@ fclean:
 	@echo "$(GREEN)The server, client, libft and the object files have been removed!"
 
 re:
-	make fclean
-	make
+	@make fclean
+	@make
 
 .PHONY:			all clean fclean re 
