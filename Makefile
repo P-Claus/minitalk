@@ -24,8 +24,8 @@ CLIENT_SRC	= $(SOURCES_DIR)client.c
 #########################################
 ###		 BONUS	      	      ###
 #########################################
-BONUS_CLIENT_NAME	= client
-BONUS_SERVER_NAME	= server
+BONUS_CLIENT_NAME	= client_bonus
+BONUS_SERVER_NAME	= server_bonus
 BONUS_NAME		= $(BONUS_CLIENT_NAME) $(BONUS_SERVER_NAME)
 
 BONUS_INCLUDES		= -I ./bonus_includes
@@ -71,6 +71,15 @@ re:
 	@make
 
 bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
+
+$(BONUS_SERVER_NAME): $(LIBFT) $(BONUS_SERVER_SRC) ./bonus_includes/server_bonus.h ./bonus_includes/minitalk_bonus.h
+	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_SERVER_NAME) $(BONUS_SERVER_SRC)
+	@echo "$(GREEN)The server with bonus has been created!"
+
+$(BONUS_CLIENT_NAME): $(LIBFT) $(BONUS_CLIENT_SRC) ./bonus_includes/client_bonus.h ./bonus_includes/minitalk_bonus.h
+
+	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_CLIENT_NAME) $(BONUS_CLIENT_SRC)
+	@echo "$(GREEN)The client with bonus has been created!"
 
 
 
