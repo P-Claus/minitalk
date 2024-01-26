@@ -16,5 +16,5 @@ void	ft_putstr_color_fd(char *color, char *s, int fd)
 {
 	ft_putstr_fd(color, fd);
 	ft_putstr_fd(s, fd);
-	ft_putstr_fd(ANSI_COLOR_RESET, fd);
+	ft_putstr_fd(RESET, fd);
 }

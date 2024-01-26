@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef SERVER_BONUS_H
+# define SERVER_BONUS_H
 
-#include <unistd.h>
-#include <signal.h>
+# include <unistd.h>
+# include <signal.h>
 
 #endif

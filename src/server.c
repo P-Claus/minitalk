@@ -42,7 +42,7 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	ft_putstr_fd("The PID is: ", 1);
-	ft_putstr_color_fd(ANSI_COLOR_YELLOW, ft_itoa(getpid()), 1);
+	ft_putstr_color_fd(YELLOW, ft_itoa(getpid()), 1);
 	ft_putstr_fd("\n", 1);
 	while (1)
 		pause();

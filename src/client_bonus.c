@@ -16,7 +16,7 @@
 void	handle_signal(int sig)
 {
 	(void)sig;
-	ft_putstr_color_fd(ANSI_COLOR_BLUE, "The message has been received\n", 1);
+	ft_putstr_color_fd(BLUE, "The message has been received\n", 1);
 	exit(1);
 }
 
@@ -34,15 +34,14 @@ void	convert_char_to_bits(int pid, char c)
 		count--;
 		usleep(60);
 	}
-
 }
 
 int	main(int argc, char *argv[])
 {
-	char	*string;
-	int		index;
-	
-	struct sigaction sa;
+	char		*string;
+	int			index;
+	struct sigaction	sa;
+
 	sa.sa_handler = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
 	index = 0;
@@ -50,9 +49,9 @@ int	main(int argc, char *argv[])
 		return (0);
 	if (argc != 3)
 	{
-		ft_putstr_color_fd(ANSI_COLOR_RED, "Invalid arguments\n", 2);
+		ft_putstr_color_fd(RED, "Invalid arguments\n", 2);
 		ft_putstr_fd("The correct format is: ", 1);
-		ft_putstr_color_fd(ANSI_COLOR_YELLOW, "./client_bonus <PID> <STRING>\n", 1);
+		ft_putstr_color_fd(YELLOW, "./client_bonus <PID> <STRING>\n", 1);
 		exit(1);
 	}
 	string = argv[2];

@@ -39,9 +39,9 @@ int	main(int argc, char *argv[])
 		return (0);
 	if (argc != 3)
 	{
-		ft_putstr_color_fd(ANSI_COLOR_RED, "Invalid arguments\n", 2);
+		ft_putstr_color_fd(RED, "Invalid arguments\n", 2);
 		ft_putstr_fd("The correct format is: ", 1);
-		ft_putstr_color_fd(ANSI_COLOR_YELLOW, "./client <PID> <STRING>\n", 1);
+		ft_putstr_color_fd(YELLOW, "./client <PID> <STRING>\n", 1);
 		exit(1);
 	}
 	string = argv[2];

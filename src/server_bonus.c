@@ -21,9 +21,9 @@ void	send_confirmation_to_client(int pid)
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
 	static char	char_received;
-	static int		bit_index;
-	(void) context;
+	static int	bit_index;
 
+	(void) context;
 	if (sig == SIGUSR1)
 		char_received |= 1;
 	bit_index++;
@@ -57,7 +57,7 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	ft_putstr_fd("The PID is: ", 1);
-	ft_putstr_color_fd(ANSI_COLOR_YELLOW, ft_itoa(getpid()), 1);
+	ft_putstr_color_fd(YELLOW, ft_itoa(getpid()), 1);
 	ft_putstr_fd("\n", 1);
 	while (1)
 		pause();

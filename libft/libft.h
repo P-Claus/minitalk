@@ -24,11 +24,11 @@ typedef struct s_list
 }			t_list;
 
 //colors
-# define ANSI_COLOR_RED		"\x1b[31m"
-# define ANSI_COLOR_BLUE	"\x1b[34m"
-# define ANSI_COLOR_GREEN	"\x1b[32m"
-# define ANSI_COLOR_YELLOW	"\x1b[33m"
-# define ANSI_COLOR_RESET	"\x1b[0m"
+# define RED		"\x1b[31m"
+# define BLUE	"\x1b[34m"
+# define GREEN	"\x1b[32m"
+# define YELLOW	"\x1b[33m"
+# define RESET	"\x1b[0m"
 
 //string.h library functions
 void	*ft_memchr(const void *s, int c, size_t n);
