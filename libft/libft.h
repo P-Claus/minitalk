@@ -23,6 +23,13 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
+//colors
+# define ANSI_COLOR_RED		"\x1b[31m"
+# define ANSI_COLOR_BLUE	"\x1b[34m"
+# define ANSI_COLOR_GREEN	"\x1b[32m"
+# define ANSI_COLOR_YELLOW	"\x1b[33m"
+# define ANSI_COLOR_RESET	"\x1b[0m"
+
 //string.h library functions
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -67,6 +74,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_color_fd(char *color, char *s, int fd);
 
 //list functions
 t_list	*ft_lstnew(void *content);

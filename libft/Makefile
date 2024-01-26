@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 CC = cc
 
-RM = rm -f
+RM = rm -rf
 
 SOURCES = *.c
 
@@ -24,7 +24,7 @@ OBJ_FILES = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(SOURCES)
+$(NAME): $(SOURCES) libft.h
 	@$(CC) $(CFLAGS) -c $(SOURCES)
 	@ar rcs $(NAME) $(OBJ_FILES)
 
@@ -36,4 +36,4 @@ fclean: clean
 
 re:	fclean $(NAME)
 
-.PHONY:			all clean fclean re bonus
+.PHONY:			all clean fclean re 
