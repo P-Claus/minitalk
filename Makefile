@@ -58,26 +58,25 @@ $(CLIENT_NAME): $(LIBFT) $(CLIENT_SRC) ./includes/client.h ./includes/minitalk.h
 
 clean:
 	@make clean -C $(LIBFT_DIR) -s
-	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ)
+	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ) $(BONUS_CLIENT_NAME) $(BONUS_SERVER_NAME)
 	@echo "$(GREEN)The server, client and object files from libft have been removed!"
 
 fclean:
 	@make fclean -C $(LIBFT_DIR) -s
-	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ)
+	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ) $(BONUS_CLIENT_NAME) $(BONUS_SERVER_NAME)
 	@echo "$(GREEN)The server, client, libft and the object files have been removed!"
 
 re:
 	@make fclean
 	@make
 
-bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
+#bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
 
 $(BONUS_SERVER_NAME): $(LIBFT) $(BONUS_SERVER_SRC) ./bonus_includes/server_bonus.h ./bonus_includes/minitalk_bonus.h
 	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_SERVER_NAME) $(BONUS_SERVER_SRC)
 	@echo "$(GREEN)The server with bonus has been created!"
 
 $(BONUS_CLIENT_NAME): $(LIBFT) $(BONUS_CLIENT_SRC) ./bonus_includes/client_bonus.h ./bonus_includes/minitalk_bonus.h
-
 	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_CLIENT_NAME) $(BONUS_CLIENT_SRC)
 	@echo "$(GREEN)The client with bonus has been created!"
 

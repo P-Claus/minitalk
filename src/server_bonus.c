@@ -32,7 +32,6 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 		if (char_received == '\0')
 		{
 			ft_putchar('\n');
-			printf("The pid from the sender is: %d\n", info->si_pid);
 			send_confirmation_to_client(info->si_pid);
 		}
 		else
@@ -46,15 +45,21 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction sa;
-	sa.sa_sigaction = &handle_signal;
+	struct sigaction	sa;
+	sigset_t			block_signals;
+
+	sigemptyset(&block_signals);
+	sigaddset(&block_signals, SIGINT);
+	sigaddset(&block_signals, SIGQUIT);
 	sa.sa_flags = SA_SIGINFO;
+	sa.sa_mask = block_signals;
+	sa.sa_sigaction = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-
-	printf("The pid is: %d\n", getpid());
+	ft_putstr_fd("The PID is: ", 1);
+	ft_putstr_color_fd(ANSI_COLOR_YELLOW, ft_itoa(getpid()), 1);
+	ft_putstr_fd("\n", 1);
 	while (1)
 		pause();
-
 	return (0);
 }
