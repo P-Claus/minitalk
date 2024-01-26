@@ -51,6 +51,7 @@ int	main(void)
 	sigemptyset(&block_signals);
 	sigaddset(&block_signals, SIGINT);
 	sigaddset(&block_signals, SIGQUIT);
+	sa.sa_flags = SA_RESTART;
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_mask = block_signals;
 	sa.sa_sigaction = &handle_signal;
@@ -61,5 +62,4 @@ int	main(void)
 	ft_putstr_fd("\n", 1);
 	while (1)
 		pause();
-	return (0);
 }
