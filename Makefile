@@ -70,7 +70,7 @@ re:
 	@make fclean
 	@make
 
-#bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
+bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
 
 $(BONUS_SERVER_NAME): $(LIBFT) $(BONUS_SERVER_SRC) ./bonus_includes/server_bonus.h ./bonus_includes/minitalk_bonus.h
 	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_SERVER_NAME) $(BONUS_SERVER_SRC)
