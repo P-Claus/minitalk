@@ -12,7 +12,7 @@
 
 #include "../bonus_includes/minitalk_bonus.h"
 #include "../bonus_includes/server_bonus.h"
-
+#include <stdio.h>
 void	send_confirmation_to_client(int pid)
 {
 	kill(pid, SIGUSR1);
