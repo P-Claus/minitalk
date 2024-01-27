@@ -9,8 +9,8 @@ NAME		= $(CLIENT_NAME) $(SERVER_NAME)
 
 LIBFT_DIR	= ./libft
 LIBFT		= ./libft/libft.a
-LIBFT_SOURCES	= libft/*.c
-LIBFT_OBJ	= libft/*.o
+LIBFT_SOURCES	= $(LIBFT_DIR)/*.c
+LIBFT_OBJ	= $(LIBFT_DIR)/*.o
 
 INCLUDES	= -I ./includes
 CC		= cc
@@ -49,11 +49,11 @@ $(LIBFT):
 	@echo "$(GREEN)Libft has been created!"
 
 $(SERVER_NAME): $(LIBFT) $(SERVER_SRC) ./includes/server.h ./includes/minitalk.h
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) -o $(SERVER_NAME) $(SERVER_SRC)
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $(SERVER_NAME) $(SERVER_SRC) $(LIBFT)
 	@echo "$(GREEN)The server has been created!"
 
 $(CLIENT_NAME): $(LIBFT) $(CLIENT_SRC) ./includes/client.h ./includes/minitalk.h
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) -o $(CLIENT_NAME) $(CLIENT_SRC)
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $(CLIENT_NAME) $(CLIENT_SRC) $(LIBFT) 
 	@echo "$(GREEN)The client has been created!"
 
 clean:
@@ -73,11 +73,11 @@ re:
 bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
 
 $(BONUS_SERVER_NAME): $(LIBFT) $(BONUS_SERVER_SRC) ./bonus_includes/server_bonus.h ./bonus_includes/minitalk_bonus.h
-	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_SERVER_NAME) $(BONUS_SERVER_SRC)
+	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) -o $(BONUS_SERVER_NAME) $(BONUS_SERVER_SRC) $(LIBFT) 
 	@echo "$(GREEN)The server with bonus has been created!"
 
 $(BONUS_CLIENT_NAME): $(LIBFT) $(BONUS_CLIENT_SRC) ./bonus_includes/client_bonus.h ./bonus_includes/minitalk_bonus.h
-	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) $(LIBFT) -o $(BONUS_CLIENT_NAME) $(BONUS_CLIENT_SRC)
+	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) -o $(BONUS_CLIENT_NAME) $(BONUS_CLIENT_SRC) $(LIBFT) 
 	@echo "$(GREEN)The client with bonus has been created!"
 
 
