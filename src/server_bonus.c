@@ -13,29 +13,39 @@
 #include "../bonus_includes/minitalk_bonus.h"
 #include "../bonus_includes/server_bonus.h"
 #include <stdio.h>
-void	send_confirmation_to_client(int pid)
+
+void	send_confirmation_and_print_char(char char_received, int pid)
 {
-	kill(pid, SIGUSR1);
+	if (char_received == '\0')
+	{
+		ft_putchar('\n');
+		kill(pid, SIGUSR1);
+	}
+	else
+		ft_putchar(char_received);
 }
 
 void	handle_signal(int sig, siginfo_t *info, void *context)
 {
 	static char	char_received;
 	static int	bit_index;
+	static int	pid;
 
 	(void) context;
+	if (pid == 0)
+		pid = info->si_pid;
+	if (pid != info->si_pid)
+	{
+		bit_index = 0;
+		char_received = 0;
+		pid = 0;
+	}
 	if (sig == SIGUSR1)
 		char_received |= 1;
 	bit_index++;
 	if (bit_index == 8)
 	{
-		if (char_received == '\0')
-		{
-			ft_putchar('\n');
-			send_confirmation_to_client(info->si_pid);
-		}
-		else
-			ft_putchar(char_received);
+		send_confirmation_and_print_char(char_received, pid);
 		bit_index = 0;
 		char_received = 0;
 	}
@@ -51,7 +61,6 @@ int	main(void)
 	sigemptyset(&block_signals);
 	sigaddset(&block_signals, SIGINT);
 	sigaddset(&block_signals, SIGQUIT);
-	sa.sa_flags = SA_RESTART;
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_mask = block_signals;
 	sa.sa_sigaction = &handle_signal;

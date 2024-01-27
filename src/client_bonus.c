@@ -38,9 +38,9 @@ void	convert_char_to_bits(int pid, char c)
 
 int	main(int argc, char *argv[])
 {
-	char		*string;
-	int			index;
 	struct sigaction	sa;
+	char				*string;
+	int					index;
 
 	sa.sa_handler = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
