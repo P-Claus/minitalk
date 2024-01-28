@@ -56,13 +56,13 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 int	main(void)
 {
 	struct sigaction	sa;
-	sigset_t			block_signals;
+	//sigset_t			block_signals;
 
-	sigemptyset(&block_signals);
-	sigaddset(&block_signals, SIGINT);
-	sigaddset(&block_signals, SIGQUIT);
+	//sigemptyset(&block_signals);
+	//sigaddset(&block_signals, SIGINT);
+	//sigaddset(&block_signals, SIGQUIT);
 	sa.sa_flags = SA_SIGINFO;
-	sa.sa_mask = block_signals;
+	//sa.sa_mask = block_signals;
 	sa.sa_sigaction = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
