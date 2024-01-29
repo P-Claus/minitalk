@@ -25,7 +25,7 @@ void	convert_char_to_bits(int pid, char c)
 		if (((c >> count) & 1) == 0)
 			kill(pid, SIGUSR2);
 		count--;
-		usleep(60);
+		usleep(500);
 	}
 }
 
