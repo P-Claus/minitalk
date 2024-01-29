@@ -53,7 +53,6 @@ void	convert_char_to_bits(int pid, char c)
 		count--;
 		received_signal = 0;
 		pause();
-		//usleep(500);
 	}
 }
 

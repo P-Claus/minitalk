@@ -38,19 +38,14 @@ void	handle_signal(int sig, siginfo_t *info, void *context)
 	{
 		bit_index = 0;
 		char_received = 0;
+		pid = info->si_pid;
 	}
-	printf("Pid is: %d\n", pid);
-	printf("Pid2 is: %d\n", info->si_pid);
+	//printf("Pid is: %d\n", pid);
+//	printf("Pid2 is: %d\n", info->si_pid);
+	printf("The sig is: %d\n", sig);
 	if (sig == SIGUSR1)
 		char_received |= 1;
 	bit_index++;
-	/*
-	if (sig == SIGUSR1)
-		ft_putchar('1');
-	else if (sig == SIGUSR2)
-		ft_putchar('0 ');
-	else
-	 	ft_putchar('3'); */
 	if (bit_index == 8)
 	{
 		send_confirmation_and_print_char(char_received, pid);
