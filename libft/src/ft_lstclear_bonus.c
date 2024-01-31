@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2023/11/07 17:20:33 by pclaus            #+#    #+#             */
+/*   Updated: 2023/11/07 17:21:54 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*temp;
 
-#endif
+	if (lst)
+	{
+		while (*lst)
+		{
+			temp = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			(*lst) = temp;
+		}
+	}
+}

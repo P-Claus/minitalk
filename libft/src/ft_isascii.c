@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2023/11/07 15:15:49 by pclaus            #+#    #+#             */
+/*   Updated: 2023/11/07 15:16:37 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
-
-#endif
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
+}

@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2023/11/15 18:57:16 by pclaus            #+#    #+#             */
+/*   Updated: 2023/11/18 16:57:27 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/ft_printf.h"
 
-# include "../libft/includes/libft.h"
+int	print_string(char *str)
+{
+	int	count;
 
-#endif
+	count = 0;
+	if (!str)
+	{
+		print_string("(null)");
+		return (6);
+	}
+	while (*str)
+	{
+		print_character((int)*str);
+		count++;
+		str++;
+	}
+	return (count);
+}

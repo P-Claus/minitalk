@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2024/01/28 15:59:18 by pclaus            #+#    #+#             */
+/*   Updated: 2024/01/28 15:59:20 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/ft_printf.h"
 
-# include "../libft/includes/libft.h"
+int	ft_str_is_numeric(char *str)
+{
+	int	count;
 
-#endif
+	count = 0;
+	while (str[count] && str[count] != '\0')
+	{
+		if ((str[count] >= '0') && (str[count] <= '9'))
+			count++;
+		else
+		 return (0);
+	}
+	return (1);
+}

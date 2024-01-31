@@ -33,9 +33,17 @@ BONUS_SERVER_SRC	= $(SOURCES_DIR)server_bonus.c
 BONUS_CLIENT_SRC	= $(SOURCES_DIR)client_bonus.c
 
 #########################################
-###		 COLORS	      	      ###
+###		COLORS		      ###
 #########################################
-GREEN		= \033[0;92m
+
+RED		= \033[0;31m
+GREEN		= \033[0;32m
+YELLOW		= \033[0;33m
+BLUE		= \033[0;34m
+MAGENTA		= \033[0;35m
+CYAN		= \033[0;36m
+RESET		= \033[0m
+MOVEUP		= \033[F
 
 #########################################
 ###		 RULES	      	      ###
@@ -45,26 +53,25 @@ name: $(SERVER_NAME) $(CLIENT_NAME)
 all: $(NAME)
 
 $(LIBFT): 
-	@make -C $(LIBFT_DIR) -s
-	@echo "$(GREEN)Libft has been created!"
+	@make -C $(LIBFT_DIR)
 
 $(SERVER_NAME): $(LIBFT) $(SERVER_SRC) ./includes/server.h ./includes/minitalk.h
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $(SERVER_NAME) $(SERVER_SRC) $(LIBFT)
-	@echo "$(GREEN)The server has been created!"
+	@echo "$(MOVEUP)$(GREEN)The server has been created!\n"
 
 $(CLIENT_NAME): $(LIBFT) $(CLIENT_SRC) ./includes/client.h ./includes/minitalk.h
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $(CLIENT_NAME) $(CLIENT_SRC) $(LIBFT) 
-	@echo "$(GREEN)The client has been created!"
+	@printf "$(MOVEUP)$(GREEN)The client has been created!\n"
 
 clean:
-	@make clean -C $(LIBFT_DIR) -s
+	@make clean -C $(LIBFT_DIR)
 	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ) $(BONUS_CLIENT_NAME) $(BONUS_SERVER_NAME)
-	@echo "$(GREEN)The server, client and object files from libft have been removed!"
+	@printf "$(GREEN)The server and the client have been removed!"
 
 fclean:
-	@make fclean -C $(LIBFT_DIR) -s
+	@make fclean -C $(LIBFT_DIR)
 	@$(RM) $(SERVER_NAME) $(CLIENT_NAME) $(LIBFT_OBJ) $(BONUS_CLIENT_NAME) $(BONUS_SERVER_NAME)
-	@echo "$(GREEN)The server, client, libft and the object files have been removed!"
+	@printf "$(GREEN)The server, client and the object files have been removed!"
 
 re:
 	@make fclean
@@ -74,11 +81,11 @@ bonus: $(LIBFT) $(BONUS_SERVER_NAME) $(BONUS_CLIENT_NAME)
 
 $(BONUS_SERVER_NAME): $(LIBFT) $(BONUS_SERVER_SRC) ./bonus_includes/server_bonus.h ./bonus_includes/minitalk_bonus.h
 	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) -o $(BONUS_SERVER_NAME) $(BONUS_SERVER_SRC) $(LIBFT) 
-	@echo "$(GREEN)The server with bonus has been created!"
+	@printf "$(GREEN)The server with bonus has been created!"
 
 $(BONUS_CLIENT_NAME): $(LIBFT) $(BONUS_CLIENT_SRC) ./bonus_includes/client_bonus.h ./bonus_includes/minitalk_bonus.h
 	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) -o $(BONUS_CLIENT_NAME) $(BONUS_CLIENT_SRC) $(LIBFT) 
-	@echo "$(GREEN)The client with bonus has been created!"
+	@printf "$(GREEN)The client with bonus has been created!"
 
 
 

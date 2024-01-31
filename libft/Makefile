@@ -1,39 +1,71 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/07 17:41:01 by pclaus            #+#    #+#              #
-#    Updated: 2023/11/07 17:41:03 by pclaus           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#########################################
+###		CONFIG		      ###
+#########################################
 
-NAME = libft.a
+NAME		= libft.a
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra
+CC		= cc
+RM		= rm -rf
+MKDIR		= mkdir -p
 
-CC = cc
+SOURCES_DIR	= src
+SOURCES		= $(wildcard $(SOURCES_DIR)/*.c)
+OBJ		= $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
+OBJ_DIR		= obj
 
-RM = rm -rf
+INCLUDES	= includes/*.h
 
-SOURCES = *.c
+#########################################
+PRINTF_SRC_DIR	= printf
+PRINTF_SRC	= $(wildcard $(PRINTF_SRC_DIR)/*.c)
+PRINTF_OBJ	= $(addprefix $(OBJ_DIR)/, $(notdir $(PRINTF_SRC:.c=.o))) 
 
-OBJ_FILES = $(SOURCES:.c=.o)
+
+#########################################
+###		COLORS		      ###
+#########################################
+
+RED		= \033[0;31m
+GREEN		= \033[0;32m
+YELLOW		= \033[0;33m
+BLUE		= \033[0;34m
+MAGENTA		= \033[0;35m
+CYAN		= \033[0;36m
+RESET		= \033[0m
+MOVEUP		= \033[F
+
+#########################################
+###		RULES		      ###
+#########################################
 
 all: $(NAME)
 
-$(NAME): $(SOURCES) libft.h
-	@$(CC) $(CFLAGS) -c $(SOURCES)
-	@ar rcs $(NAME) $(OBJ_FILES)
+$(NAME): $(OBJ) $(PRINTF_OBJ)
+	@ar rcs $(NAME) $(OBJ) $(PRINTF_OBJ)
+	@printf "$(MOVEUP)$(GREEN)Libft has been created!$(RESET)\n"
+
+$(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
+	@$(MKDIR) $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "$(YELLOW)Compiling $<\r"
+	
+$(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c
+	@$(MKDIR) $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "$(YELLOW)Compiling $<\r"
 
 clean:
-	@$(RM) $(OBJ_FILES)
+	@$(RM) $(OBJ_DIR)
+	@printf "$(GREEN)The object files from libft have been removed!\n"
 
-fclean: clean
+fclean: 
+	@$(RM) $(OBJ_DIR)
 	@$(RM) $(NAME)
+	@printf "$(GREEN)The object files from libft and the library have been removed!\n"
 
-re:	fclean $(NAME)
+re:
+	@make fclean
+	@make
 
 .PHONY:			all clean fclean re 

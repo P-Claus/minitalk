@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   print_digit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2023/11/15 21:21:06 by pclaus            #+#    #+#             */
+/*   Updated: 2023/11/18 15:18:05 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/ft_printf.h"
 
-# include "../libft/includes/libft.h"
+int	print_digit(long n, int base)
+{
+	int	count;
 
-#endif
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		return (print_digit(-n, base) + 1);
+	}
+	else if (n < base)
+	{
+		return (print_character(n + '0'));
+	}
+	else
+	{
+		count = print_digit(n / base, base);
+		return (count + print_digit(n % base, base));
+	}
+}

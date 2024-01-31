@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   print_hex_lower.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2023/11/16 20:38:33 by pclaus            #+#    #+#             */
+/*   Updated: 2023/11/18 16:06:59 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/ft_printf.h"
 
-# include "../libft/includes/libft.h"
+int	print_hex_lower(int long n, int base)
+{
+	int		count;
+	char	*symbols;
 
-#endif
+	count = 0;
+	symbols = "0123456789abcdef";
+	if (n < base)
+		return (print_character(symbols[n]));
+	else
+	{
+		count += print_hex_lower((n / base), base);
+		return (count + print_hex_lower((n % base), base));
+	}
+}

@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 17:30:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/25 17:30:54 by pclaus           ###   ########.fr       */
+/*   Created: 2023/11/07 16:59:30 by pclaus            #+#    #+#             */
+/*   Updated: 2023/11/07 17:00:20 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../includes/libft.h"
 
-# include "../libft/includes/libft.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int		index;
+	int		len;
+	char	*str;
 
-#endif
+	index = 0;
+	len = ft_strlen(s);
+	str = (char *) malloc((len + 1) * sizeof(char));
+	if (!str || !s)
+		return (NULL);
+	while (index < len)
+	{
+		str[index] = f(index, s[index]);
+		index++;
+	}
+	str[index] = '\0';
+	return (str);
+}
