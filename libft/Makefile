@@ -43,26 +43,27 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(PRINTF_OBJ)
 	@ar rcs $(NAME) $(OBJ) $(PRINTF_OBJ)
-	@printf "$(MOVEUP)$(GREEN)Libft has been created!$(RESET)\n"
+	@echo "$(GREEN)Libft has been created!"
 
 $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
 	@$(MKDIR) $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "$(YELLOW)Compiling $<\r"
+	@echo "$(YELLOW)Compiled $<"
 	
 $(OBJ_DIR)/%.o: $(PRINTF_SRC_DIR)/%.c
 	@$(MKDIR) $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "$(YELLOW)Compiling $<\r"
+	@echo "$(YELLOW)Compiled $<"
 
 clean:
 	@$(RM) $(OBJ_DIR)
-	@printf "$(GREEN)The object files from libft have been removed!\n"
+	@echo "$(GREEN)The object files from libft have been removed!"
 
 fclean: 
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(NAME)
-	@printf "$(GREEN)The object files from libft and the library have been removed!\n"
+	@echo "$(GREEN)The object files from libft and the library have been removed!"
+	
 
 re:
 	@make fclean
