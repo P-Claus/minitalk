@@ -35,7 +35,7 @@ void	convert_char_to_bits(int pid, char c)
 		if (((c >> count) & 1) == 0)
 			kill(pid, SIGUSR2);
 		count--;
-		usleep(250);
+		usleep(500);
 	}
 }
 
@@ -45,6 +45,8 @@ int	main(int argc, char *argv[])
 	char				*string;
 	int					index;
 
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
 	sa.sa_handler = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
@@ -53,8 +55,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	if (argc != 3)
 	{
-		ft_putstr_color_fd(RED, "Invalid arguments\n", 2);
-		ft_putstr_fd("The correct format is: ", 1);
+		ft_putstr_fd("Invalid arguments. The correct format is: ", 1);
 		ft_putstr_color_fd(YELLOW, "./client_bonus <PID> <STRING>\n", 1);
 		exit(1);
 	}
@@ -63,7 +64,5 @@ int	main(int argc, char *argv[])
 		convert_char_to_bits(ft_atoi(argv[1]), string[index++]);
 	if (string[index] == '\0')
 		convert_char_to_bits(ft_atoi(argv[1]), '\0');
-	while (1)
-		pause();
 	return (0);
 }

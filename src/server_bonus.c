@@ -57,12 +57,13 @@ int	main(void)
 	struct sigaction	sa;
 
 	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = 0;
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	ft_putstr_fd("The PID is: ", 1);
-	ft_putstr_color_fd(YELLOW, ft_itoa(getpid()), 1);
+	ft_putnbr_fd(getpid(), 1);
 	ft_putstr_fd("\n", 1);
 	while (1)
 	{
