@@ -56,6 +56,7 @@ int	main(void)
 {
 	struct sigaction	sa;
 
+	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
