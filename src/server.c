@@ -37,7 +37,8 @@ void	handle_signal(int sig)
 int	main(void)
 {
 	struct sigaction	sa;
-
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
 	sa.sa_handler = &handle_signal;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
@@ -45,6 +46,7 @@ int	main(void)
 	ft_putstr_color_fd(YELLOW, ft_itoa(getpid()), 1);
 	ft_putstr_fd("\n", 1);
 	while (1)
-		pause();
+	{
+	}
 	return (0);
 }

@@ -79,7 +79,6 @@ void	ft_putstr_color_fd(char *color, char *s, int fd);
 int		ft_printf(const char *format, ...);
 int		ft_str_is_numeric(char *str);
 
-
 //list functions
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

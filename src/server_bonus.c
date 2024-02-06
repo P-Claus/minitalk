@@ -64,5 +64,6 @@ int	main(void)
 	ft_putstr_color_fd(YELLOW, ft_itoa(getpid()), 1);
 	ft_putstr_fd("\n", 1);
 	while (1)
-		pause();
+	{
+	}
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/libft.h"
 
 int	ft_str_is_numeric(char *str)
 {
@@ -22,7 +22,7 @@ int	ft_str_is_numeric(char *str)
 		if ((str[count] >= '0') && (str[count] <= '9'))
 			count++;
 		else
-		 return (0);
+			return (0);
 	}
 	return (1);
 }

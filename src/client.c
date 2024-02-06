@@ -25,11 +25,11 @@ void	convert_char_to_bits(int pid, char c)
 		if (((c >> count) & 1) == 0)
 			kill(pid, SIGUSR2);
 		count--;
-		usleep(500);
+		usleep(250);
 	}
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	char	*string;
 	int		index;
